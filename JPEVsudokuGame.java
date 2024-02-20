@@ -12,7 +12,7 @@ public class JPEVsudokuGame
 	private static final int[][] Grid = new int[SIZE][SIZE];	//Actual susdoku grid
 	private static final Random random = new Random();      	//Randomizer
 
-	public static void main(String args[])						//Main
+	public static void main(String[] args)						//Main
 	{
 
 	int i;
