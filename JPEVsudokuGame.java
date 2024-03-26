@@ -9,24 +9,18 @@ public class JPEVsudokuGame
 
 	private static final int SIZE = 4; 							//size of the sudoku game
 	private static final char EMPTY = 'X';						//Character for the empty slot
-	private static final int[][] Grid = new int[SIZE][SIZE];	//Actual susdoku grid
-	private static final Random random = new Random();      	//Randomizer
-
+	private static final int[][] Grid = {	{2, 0, 1, 3},	//Actual susdoku grid
+											{1, 0, 2, 0},
+											{0, 2, 0, 1},
+											{0, 1, 4, 0}  };
 	public static void main(String[] args)						//Main
 	{
+	
+	Scanner scanner = new Scanner(System.in);
+	System.out.println("------------");
 
 	int i;
 	int j;
-	
-	for( i = 0; i < SIZE; i++)						//Loop through each Row
-	{
-		for( j = 0; j < SIZE; j++)					//Loop through each Column
-		{
-			Grid[i][j] = random.nextInt(4) + 1;		//Create the ranom numbers from 1 through 4 
-		}
-	}
-
-	System.out.println("______________");
 	
 
 	for(i = 0; i < SIZE; i++)					//Loop through each Row
@@ -52,11 +46,15 @@ public class JPEVsudokuGame
 
 		if((i + 1) % Math.sqrt(SIZE) == 0)					// Seperate horizontally 
 		{
-			System.out.println("______________");
+			System.out.println("------------");
 		}
 			
 	}
-	
+
+	System.out.println("Enter your guess in the format 'row column value' example:  '2 3 1':");
+	int row = scanner.nextInt();
+	int col = scanner.nextInt();
+	int guess = scanner.nextInt();
 
 	}
 }
