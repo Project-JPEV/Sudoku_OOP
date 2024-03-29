@@ -9,8 +9,12 @@ public class sudokuJPEVgame {
         Level hardLevel = levelMaker.createHardlevel();
 
         boolean solving = true; //goes into the function
+        //make a copy of the array that can be modified by user
         while (solving) 
         {
+            //user modifying array - look at victors code (playing the game)
+            //print out current grid
+
             solving = checkSolved(easyLevel); //will currently return false with B so it stops the loop
             System.out.println("Is the level solved?: " + !solving); //not solved is opposite of solving
         }
@@ -35,11 +39,13 @@ public class sudokuJPEVgame {
         }
     }
 
-    public static boolean checkSolved(Level easyLevel) {
+    public static boolean checkSolved(Level easyLevel) 
+    {
+        //check user modified array vs solution
         char[][] c = easyLevel.getSolution(); //this is the actual function call
         char[][] b = { 
             {'2', 'X', '1', '3'},
-            {'1', 'X', '2', '0'},
+            {'1', 'X', '2', '0'},s
             {'X', '2', 'X', '1'},
             {'X', '1', '3', 'X'}
         };
