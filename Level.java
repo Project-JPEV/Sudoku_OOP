@@ -4,7 +4,7 @@ public class Level
     private int column;
     private char[][] grid;
     private int difficulty;
-    private char solutions; //solution Grid
+    private char [][] solution; //solution Grid
 
     public int getRow() 
     {
@@ -51,5 +51,8 @@ public class Level
         this.difficulty = difficulty;
         this.grid = grid;
         this.solution = solution;
+    }
+    public Level(int rowcolumn, int rowcolumn2, int i, char[][] easyGrid, char[][] easySolution) {
+        //TODO Auto-generated constructor stub
     }
 }
