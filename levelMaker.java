@@ -30,7 +30,14 @@ public class levelMaker
             {'X', '2', 'X', '1'},
             {'X', '1', 'X', 'X'}
         };
-        return new Level(rowColumn, rowColumn, 1, mediumGrid);
+        char[][] mediumSolution = 
+        {
+            {'X', 'X', '1', '3'},
+            {'1', 'X', '2', '0'},
+            {'X', '2', 'X', '1'},
+            {'X', '1', 'X', 'X'}
+        };
+        return new Level(rowColumn, rowColumn, 1, mediumGrid, mediumSolution );
     }
 
     public static Level createHardlevel() 
@@ -42,7 +49,14 @@ public class levelMaker
             {'X', '2', 'X', '1'},
             {'X', 'X', '3', 'X'}
         };
-        return new Level(rowColumn, rowColumn, 1, hardGrid);
+        char[][] hardSolution = 
+        {
+            {'2', 'X', 'X', 'X'},
+            {'X', 'X', 'X', '0'},
+            {'X', '2', 'X', '1'},
+            {'X', 'X', '3', 'X'}
+        };
+        return new Level(rowColumn, rowColumn, 1, hardGrid,hardSolution);
     }
 
     public static void printLevel(Level level) {
