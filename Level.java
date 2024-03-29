@@ -4,6 +4,7 @@ public class Level
     private int column;
     private char[][] grid;
     private int difficulty;
+    private char solutions; //solution Grid
 
     public int getRow() 
     {
@@ -38,6 +39,10 @@ public class Level
     {
         this.grid = grid;
     }
+    public char[][] getSolution()
+    {
+        return solution;
+    }
 
     public Level(int row, int column, int difficulty,char[][] grid) 
     {
@@ -45,5 +50,6 @@ public class Level
         this.column = column;
         this.difficulty = difficulty;
         this.grid = grid;
+        this.solution = solution;
     }
 }
