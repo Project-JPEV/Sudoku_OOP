@@ -10,7 +10,15 @@ public class levelMaker
             {'X', '2', 'X', '1'},
             {'X', '1', '3', 'X'}
         };
-        return new Level(rowColumn, rowColumn, 1, easyGrid);
+	char[][] easySolution =
+	{
+	    {'2', 'X', '1', '3'},
+            {'1', 'X', '2', '0'},
+            {'X', '2', 'X', '1'},
+            {'X', '1', '3', 'X'}
+        };
+		
+        return new Level(rowColumn, rowColumn, 1, easyGrid, easySolution);
     }
 
     public static Level createMediumlevel() 
