@@ -182,6 +182,22 @@ public class sudokuJPEVgame implements SudokuComponent {
                 return false;
             }
         }
+
+        int startRow = (row / 2) * 2;
+        int startCol = (col / 2) * 2;
+        for (int i = startRow; i < startRow + 2; i++) 
+        {
+            for (int j = startCol; j < startCol + 2; j++) 
+            {
+                if (GRID[i][j] == guess)
+                 {
+                    return false;
+                }
+            }
+        }
+
+
+
         return true;
     }
 }
