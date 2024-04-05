@@ -19,8 +19,12 @@ public class UserManager
         }
     }
     
-    public static void findAndDisplayUserInfo(String username) {
+    public static Integer findAndDisplayUserInfo(String username) {
+        //new
+        Integer val = -1;
         boolean found = false;
+        //new
+        String userLevel = "";
         try (BufferedReader reader = new BufferedReader(new FileReader("usernames.txt"))) 
         {
             String line;
@@ -33,9 +37,11 @@ public class UserManager
                     for (String part : parts) {
                         if (part.startsWith("Level:")) 
                         {
-                            String userLevel = part.split(": ")[1];
+                            //changedb
+                         userLevel = part.split(":")[1];
+                           // String level = part.split(": ")[1];
                             System.out.println("Level: " + userLevel);
-                            
+                    
                             found = true;
                             break;
                         }
@@ -51,5 +57,17 @@ public class UserManager
         {
             e.printStackTrace();
         }
+        //new if found
+        try{ 
+        if(found) 
+        {
+            val = Integer.parseInt(userLevel); 
+        }}
+        catch(Exception e){
+            System.out.println("nnnn");
+        }
+       
+        return val;
     }
+    
 }
