@@ -19,7 +19,8 @@ public class UserManager
         }
     }
     
-    public static void findAndDisplayUserInfo(String username) {
+    public static void findAndDisplayUserInfo(String username) 
+    {
         boolean found = false;
         try (BufferedReader reader = new BufferedReader(new FileReader("usernames.txt"))) 
         {
