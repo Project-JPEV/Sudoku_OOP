@@ -1,7 +1,33 @@
-public class levelMaker 
+// Interface for representing a Sudoku level
+interface SudokuLevel 
+{
+    Level createLevel1(); //easy
+    Level createLevel2(); //medium
+    Level createLevel3(); //hard
+}
+public class levelMaker implements SudokuLevel 
 {
     public static final int rowColumn = 4;
-    public static Level createEasylevel() 
+    @Override
+    public Level createLevel1() 
+    {
+        // For example, let's create an easy level
+        return createEasylevel();
+    }
+    @Override
+    public Level createLevel2() 
+    {
+        // For example, let's create an easy level
+        return createMediumlevel();
+    }
+    @Override
+    public Level createLevel3() 
+    {
+        // For example, let's create an easy level
+        return createHardlevel();
+    }
+    
+    public Level createEasylevel() 
     {
         char[][] easyGrid = 
         {
@@ -21,7 +47,7 @@ public class levelMaker
         return new Level(rowColumn, rowColumn, 1, easyGrid, easySolution);
     }
 
-    public static Level createMediumlevel() 
+    public Level createMediumlevel() 
     {
         char[][] mediumGrid = 
         {
@@ -40,7 +66,7 @@ public class levelMaker
         return new Level(rowColumn, rowColumn, 1, mediumGrid, mediumSolution );
     }
 
-    public static Level createHardlevel() 
+    public Level createHardlevel() 
     {
         char[][] hardGrid = 
         {
@@ -59,7 +85,7 @@ public class levelMaker
         return new Level(rowColumn, rowColumn, 1, hardGrid,hardSolution);
     }
 
-    public static void printLevel(Level level) {
+    public void printLevel(Level level) {
         System.out.println("Hiding some values for user to guess...");
         System.out.println("------------");
         char[][] grid = level.getGrid();
@@ -80,4 +106,5 @@ public class levelMaker
             }
         }
     }
+
 }

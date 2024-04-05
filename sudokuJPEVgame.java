@@ -1,7 +1,13 @@
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class sudokuJPEVgame {
+interface SudokuComponent  // Interface example
+{
+    boolean checkSolved(Level level);
+    boolean playing(char[][] input, boolean solving);
+}
+
+public class sudokuJPEVgame implements SudokuComponent {
 
     private static final int SIZE = 4;                           // size of the sudoku game
     private static final char EMPTY = 'X';                       // Character for the empty slot
@@ -9,9 +15,12 @@ public class sudokuJPEVgame {
 
     public static void main(String[] args) 
     {
-        Level easyLevel = levelMaker.createEasylevel();
-        Level mediumLevel = levelMaker.createMediumlevel();
-        Level hardLevel = levelMaker.createHardlevel();
+        levelMaker levelMaker = new levelMaker();
+        sudokuJPEVgame game = new sudokuJPEVgame();
+
+        Level easyLevel = levelMaker.createLevel1();
+        Level mediumLevel = levelMaker.createLevel2();
+        Level hardLevel = levelMaker.createLevel3();
 
         boolean solving = true; 
         
@@ -24,7 +33,7 @@ public class sudokuJPEVgame {
                 while (solving) 
                 {
                     
-                    solving = checkSolved(easyLevel); //will currently return false with B so it stops the loop
+                    solving = game.checkSolved(easyLevel); //will currently return false with B so it stops the loop
                     if (solving == true)
                     {
                         System.out.println("Easy Level:");
@@ -33,7 +42,7 @@ public class sudokuJPEVgame {
                         char input[][] = easyLevel.getGrid();
                         System.out.println("\nEnter your guess in the format 'row column guess' example: '2 3 1': (Enter Exit or Quit to leave game)");
                         System.out.println("R C G\n-----");
-                        playing(input, solving);
+                        game.playing(input, solving);
                     }
                     else
                     {
@@ -44,7 +53,7 @@ public class sudokuJPEVgame {
             case 2:
                 while (solving)
                 {
-                    solving = checkSolved(mediumLevel);
+                    solving = game.checkSolved(mediumLevel);
                     if (solving == true)
                     {
                         System.out.println("Medium LEvel:");
@@ -53,7 +62,7 @@ public class sudokuJPEVgame {
                         char input[][] = mediumLevel.getGrid();
                         System.out.println("\nEnter your guess in the format 'row column guess' example: '2 3 1': (Enter Exit or Quit to leave game)");
                         System.out.println("R C G\n-----");
-                        playing(input, solving);
+                        game.playing(input, solving);
                     }
                     else
                     {
@@ -64,7 +73,7 @@ public class sudokuJPEVgame {
                 case 3:
                 while (solving)
                 {
-                    solving = checkSolved(hardLevel);
+                    solving = game.checkSolved(hardLevel);
                     if (solving == true)
                     {
                         System.out.println("Easy Level:");
@@ -73,7 +82,7 @@ public class sudokuJPEVgame {
                         char input[][] = hardLevel.getGrid();
                         System.out.println("\nEnter your guess in the format 'row column guess' example: '2 3 1': (Enter Exit or Quit to leave game)");
                         System.out.println("R C G\n-----");
-                        playing(input, solving);
+                        game.playing(input, solving);
                     }
                     else
                     {
@@ -87,12 +96,12 @@ public class sudokuJPEVgame {
         }
     }
 
-    public static boolean checkSolved(Level easyLevel) 
+    public boolean checkSolved(Level level)  
     {
         //check user modified array vs solution
-        char[][] b = easyLevel.getSolution();
+        char[][] b = level.getSolution();
         boolean isSolved = false;   
-        char[][] a = easyLevel.getGrid();
+        char[][] a = level.getGrid();
         for (int i = 0; i < a.length; i++) 
         {
             if (!Arrays.equals(a[i], b[i])) 
@@ -106,80 +115,73 @@ public class sudokuJPEVgame {
         }
         return isSolved;
     }
-    public static boolean playing(char [][] input, boolean solving)
-    {
-        
-        char [][]GRID = input;
+    public boolean playing(char[][] input, boolean solving) {
+        char[][] GRID = input;
         String userInput = scanner.nextLine().trim();
-
+    
         if (userInput.equalsIgnoreCase("Exit") || userInput.equalsIgnoreCase("Quit")) //Loop for game to start
         {
             System.out.println("Goodbye");
             return solving = false;
         }
-
+    
         String[] parts = userInput.split(" ");                   //make user input into string and split into parts with spaces
-
-        if (parts.length != 3) {                                        //only allow 3 parts from user input
+    
+        if (parts.length != 3) 
+        {                                        //only allow 3 parts from user input
             System.out.println("Invalid formatting try again");
             return solving = true;
         }
-
-        int row = Integer.parseInt(parts[0]) - 1;                      
+    
+        int row = Integer.parseInt(parts[0]) - 1;
         int col = Integer.parseInt(parts[1]) - 1;
         char guess = parts[2].charAt(0);
-
-
-        //make a 3 lives function to quit game 
     
-
         if (row < 0 || row >= SIZE || col < 0 || col >= SIZE)                   // check for valid rows and columns
         {
             System.out.println("Invalid row or column input try again");
             return solving = true;
         }
-
+    
         if (guess != EMPTY && (guess < '1' || guess > '4'))                     // make sure to only allow 1-4 from user for guess attempt
         {
             System.out.println("Invalid guess input try again");
             return solving = true;
         }
-
+    
         if (GRID[row][col] != EMPTY)                                           //check if slot already filled
         {
             System.out.println("Already filled, try again");
             return solving = true;
         }
-        
-        if (!uniqueValue(row, col, guess,GRID)) 
+    
+        if (!uniqueValue(row, col, guess, GRID)) 
         {
-            System.out.println("Number already exists in row or column, try again");       //check for specific number in that lot if already filled 
+            System.out.println("Number already exists in row or column, try again");       //check for specific number in that lot if already filled
             return solving = true;
         }
-
-        GRID[row][col] = guess;                                                             //print  updated game again 
+    
+        GRID[row][col] = guess;                                                             //print  updated game again
         return solving = true;
     
     }
-    private static boolean uniqueValue(int row, int col, char guess,char [][]GRID)                        //Check for duplicates
-    {
-        for( int i = 0; i < SIZE; i++)                                                      // checking for rows 
+    
+    private boolean uniqueValue(int row, int col, char guess, char[][] GRID) {
+        for (int i = 0; i < SIZE; i++)                                                      // checking for rows
         {
-            if( GRID[row][i] == guess)                                                  
+            if (GRID[row][i] == guess) 
             {
                 return false;
             }
         }
-
-        for( int i = 0; i < SIZE; i++)                                                    // checking for columns
+    
+        for (int i = 0; i < SIZE; i++)                                                    // checking for columns
         {
-            if (GRID[i][col] == guess)
+            if (GRID[i][col] == guess) 
             {
                 return false;
             }
         }
         return true;
     }
-
-
 }
