@@ -90,12 +90,13 @@ public class sudokuJPEVgame {
     public static boolean checkSolved(Level easyLevel) 
     {
         //check user modified array vs solution
-        char[][] b = easyLevel.getSolution(); //this is the actual function call
-        //above is the a test to see if it works
+        char[][] b = easyLevel.getSolution();
         boolean isSolved = false;   
         char[][] a = easyLevel.getGrid();
-        for (int i = 0; i < a.length; i++) {
-            if (!Arrays.equals(a[i], b[i])) { //replace b with C when working
+        for (int i = 0; i < a.length; i++) 
+        {
+            if (!Arrays.equals(a[i], b[i])) 
+            { 
              isSolved = true;
                 break;
             }
