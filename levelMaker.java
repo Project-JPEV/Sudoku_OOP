@@ -1,5 +1,4 @@
-// Interface for representing a Sudoku level
-interface SudokuLevel 
+interface SudokuLevel  // Interface for representing a Sudoku level
 {
     Level createLevel1(); //easy
     Level createLevel2(); //medium
