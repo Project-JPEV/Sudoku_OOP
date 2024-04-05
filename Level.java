@@ -1,8 +1,8 @@
-public class Level 
+public class Level          //encapsulation example
 {
     private int row;
     private int column;
-    private char[][] grid; //level grid
+    private char[][] grid; //level grid array
     private int difficulty; //1 is easy, 2 is medium, 3 hard
     private char [][] solution; //solution Grid
 
