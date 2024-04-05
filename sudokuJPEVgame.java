@@ -7,7 +7,8 @@ interface SudokuComponent  // Interface example
     boolean playing(char[][] input, boolean solving);
 }
 
-public class sudokuJPEVgame implements SudokuComponent {
+public class sudokuJPEVgame implements SudokuComponent 
+{
 
     private static final int SIZE = 4;                           // size of the sudoku game
     private static final char EMPTY = 'X';                       // Character for the empty slot
@@ -25,7 +26,8 @@ public class sudokuJPEVgame implements SudokuComponent {
             System.out.println("\nWelcome New User!, enter a user name:\n");
             userName = scanner.nextLine();
             UserManager.handleNewUser(userName);
-        } else if (userName.equalsIgnoreCase("Existing")) 
+        } 
+        else if (userName.equalsIgnoreCase("Existing")) 
         {
             System.out.println("\nWelcome back! What is your username?");
             String existingUsername = scanner.nextLine();
@@ -133,7 +135,8 @@ public class sudokuJPEVgame implements SudokuComponent {
         }
         return isSolved;
     }
-    public boolean playing(char[][] input, boolean solving) {
+    public boolean playing(char[][] input, boolean solving) 
+    {
         char[][] GRID = input;
         String userInput = scanner.nextLine().trim();
     
@@ -184,7 +187,8 @@ public class sudokuJPEVgame implements SudokuComponent {
     
     }
     
-    private boolean uniqueValue(int row, int col, char guess, char[][] GRID) {
+    private boolean uniqueValue(int row, int col, char guess, char[][] GRID) 
+    {
         for (int i = 0; i < SIZE; i++)                                                      // checking for rows
         {
             if (GRID[row][i] == guess) 
@@ -200,6 +204,22 @@ public class sudokuJPEVgame implements SudokuComponent {
                 return false;
             }
         }
+
+        int startRow = (row / 2) * 2;
+        int startCol = (col / 2) * 2;
+        for (int i = startRow; i < startRow + 2; i++) 
+        {
+            for (int j = startCol; j < startCol + 2; j++) 
+            {
+                if (GRID[i][j] == guess)
+                 {
+                    return false;
+                }
+            }
+        }
+
+
+
         return true;
     }
 }
