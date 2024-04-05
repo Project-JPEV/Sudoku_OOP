@@ -15,18 +15,34 @@ public class sudokuJPEVgame implements SudokuComponent {
 
     public static void main(String[] args) 
     {
+        String userName;
+        System.out.println("\nAre you a new player or an existing player?\n");
+        userName = scanner.nextLine();
+
+        if (userName.equalsIgnoreCase("New")) 
+        {
+            System.out.println("\nWelcome New User!, enter a user name:\n");
+            userName = scanner.nextLine();
+            UserManager.handleNewUser(userName);
+        } else if (userName.equalsIgnoreCase("Existing")) 
+        {
+            System.out.println("\nWelcome back! What is your username?");
+            String existingUsername = scanner.nextLine();
+            UserManager.findAndDisplayUserInfo(existingUsername);
+        } 
+        else 
+        {
+            System.out.println("Invalid input. Please type 'New' or 'Existing'.");
+        }
         levelMaker levelMaker = new levelMaker();
         sudokuJPEVgame game = new sudokuJPEVgame();
 
         Level easyLevel = levelMaker.createLevel1();
         Level mediumLevel = levelMaker.createLevel2();
         Level hardLevel = levelMaker.createLevel3();
-
         boolean solving = true; 
-        
-        System.out.print("Enter a number for level:"); // Prompt the user to enter a level number
 
-        int level = scanner.nextInt();         // Read the number entered by the user
+        int level = 1;         //convert userlevel to number and put into this 
         switch (level) 
         {
             case 1:
