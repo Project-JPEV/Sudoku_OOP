@@ -43,10 +43,10 @@ public class sudokuJPEVgame implements SudokuComponent
         Level easyLevel = levelMaker.createLevel1();
         Level mediumLevel = levelMaker.createLevel2();
         Level hardLevel = levelMaker.createLevel3();
-        boolean solving = true; 
+        boolean solving = true;
 
-      // int val = Integer.value(userLevel);
-      //  Integer level = val;         //convert userlevel to number and put into this 
+        //System.out.println("userlevel"+ userLevel); //for error checking
+
         switch (userLevel) 
         {
             case 1:
@@ -111,7 +111,7 @@ public class sudokuJPEVgame implements SudokuComponent
                 }
                 break;
             default:
-                System.out.println("\nHard Level:");
+                System.out.println("\nGoodbye!:");
                 break;
         }
     }

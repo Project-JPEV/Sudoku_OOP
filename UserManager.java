@@ -5,9 +5,10 @@ import java.io.IOException;
 
 public class UserManager 
 {
-
+    //Format "Username: name, Level: 1" all are string
     public static void handleNewUser(String input) 
     {
+        //try catch example
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("usernames.txt", true))) 
         {
             writer.write("Username: " + input + ", Level: 1\n"); // Default level is 1 for new users
@@ -18,13 +19,10 @@ public class UserManager
             e.printStackTrace();
         }
     }
-    
-    public static Integer findAndDisplayUserInfo(String username) {
-        //new
-        Integer val = -1;
+
+    public static int findAndDisplayUserInfo(String username) {
+        int userLevel = -1; // Initialize to -1 by default, isnt accepted as valid number
         boolean found = false;
-        //new
-        String userLevel = "";
         try (BufferedReader reader = new BufferedReader(new FileReader("usernames.txt"))) 
         {
             String line;
@@ -37,11 +35,8 @@ public class UserManager
                     for (String part : parts) {
                         if (part.startsWith("Level:")) 
                         {
-                            //changedb
-                         userLevel = part.split(":")[1];
-                           // String level = part.split(": ")[1];
-                            System.out.println("Level: " + userLevel);
-                    
+                            String userLevelStr = part.split(":")[1].trim();
+                            userLevel = Integer.parseInt(userLevelStr); // Update userLevel to return
                             found = true;
                             break;
                         }
@@ -55,19 +50,8 @@ public class UserManager
         } 
         catch (IOException e) 
         {
-            e.printStackTrace();
+            e.printStackTrace(); //prints errors if any
         }
-        //new if found
-        try{ 
-        if(found) 
-        {
-            val = Integer.parseInt(userLevel); 
-        }}
-        catch(Exception e){
-            System.out.println("nnnn");
-        }
-       
-        return val;
+        return userLevel; // Return userLevel to main to use
     }
-    
 }
