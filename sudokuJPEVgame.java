@@ -26,6 +26,8 @@ public class sudokuJPEVgame implements SudokuComponent
             System.out.println("\nWelcome New User!, enter a user name:\n");
             userName = scanner.nextLine();
             UserManager.handleNewUser(userName);
+            userLevel=UserManager.findAndDisplayUserInfo(userName);
+            
         } 
         else if (userName.equalsIgnoreCase("Existing")) 
         {

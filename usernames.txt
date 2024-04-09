@@ -1,1 +1,3 @@
 Username: eric, Level: 2
+Username: Juliet, Level: 1
+Username: Jay, Level: 1
