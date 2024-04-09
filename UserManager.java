@@ -11,7 +11,7 @@ public class UserManager
         //try catch example
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("usernames.txt", true))) 
         {
-            writer.write("Username: " + input + ", Level: 1\n"); // Default level is 1 for new users
+            writer.write("Username: "+input+", Level: 1\n"); // Default level is 1 for new users
             System.out.println("Username saved with level 1!");
         } 
         catch (IOException e) 
@@ -46,7 +46,7 @@ public class UserManager
             }
             if (!found) 
             {
-                System.out.println("User '" + username + "' not found.");
+                System.out.println("User: "+username+" not found.");
             }
         } 
         catch (IOException e) 
@@ -67,7 +67,7 @@ public class UserManager
             {
                 if (line.contains("Username: " + userName)) //find current user
                 {
-                    line = "Username: " + userName + ", Level: " + newLevel; //new info that is to be written
+                    line = "Username: "+userName+", Level: "+newLevel; //new info that is to be written
                 }
                 content.append(line).append(System.lineSeparator()); //combine info into string
             }
@@ -78,8 +78,9 @@ public class UserManager
         }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter("usernames.txt"))) 
         {
-            writer.write(content.toString()); //write to string
-            //System.out.println("File edited successfully.");
+            writer.write(content.toString());    //write to string
+            //writer.write(line.toString());     //doesnt work
+            //System.out.println("File edited"); //to print for testing
         } 
         catch (IOException e) 
         {
