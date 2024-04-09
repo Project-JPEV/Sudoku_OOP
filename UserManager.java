@@ -54,4 +54,57 @@ public class UserManager
         }
         return userLevel; // Return userLevel to main to use
     }
+
+    public static void changeLevel(String userName, int newLevel) 
+    {
+        String fileName = "username.txt";
+        String line;
+        BufferedReader reader = new BufferedReader(new FileReader(fileName));
+        StringBuilder content = new StringBuilder();
+        
+        // Specify the line number to edit (assuming it's 1-based)
+        int lineNumber = 0; // Change this to the line number you want to edit
+
+        while ((line = reader.readLine()) != null) 
+        {
+            lineNumber++; //increment until found
+            if (line.contains("Username: " + userName)) 
+            {
+                writer.write("Username: " + userName + ", Level: "+newLevel);    
+            }
+            else
+            {
+                lineNumber++;
+            }
+        }
+        
+        try 
+        {
+            // Read the file
+            int currentLineNumber = 1;
+
+            // Read and edit the specified line
+            while ((line = reader.readLine()) != null) 
+            {
+                if (currentLineNumber == lineNumber) 
+                {
+                    line = "Username: " + userName + ", Level: "+newLevel; // Edit the line here
+                }
+                content.append(line).append(System.lineSeparator());
+                currentLineNumber++;
+            }
+            reader.close();
+
+            // Write the modified content back to the file
+            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
+            writer.write(content.toString());
+            writer.close();
+
+            System.out.println("File edited successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
+
+

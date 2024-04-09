@@ -32,8 +32,8 @@ public class sudokuJPEVgame implements SudokuComponent
         else if (userName.equalsIgnoreCase("Existing")) 
         {
             System.out.println("\nWelcome back! What is your username?");
-            String existingUsername = scanner.nextLine();
-            userLevel=UserManager.findAndDisplayUserInfo(existingUsername);
+            userName = scanner.nextLine();
+            userLevel=UserManager.findAndDisplayUserInfo(userName);
         } 
         else 
         {
@@ -69,6 +69,7 @@ public class sudokuJPEVgame implements SudokuComponent
                     else
                     {
                         System.out.println("Congratz you win");
+                        UserManager.changeLevel(userName, 2);
                     }
                 }
                 break;
