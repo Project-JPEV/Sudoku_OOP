@@ -17,11 +17,11 @@ public class sudokuJPEVgame implements SudokuComponent
     public static void main(String[] args) 
     {
         int userLevel=-1;
-        String userName;
+        String userExisting;
+        String userName = null;
         System.out.println("\nAre you a new player or an existing player?\n");
-        userName = scanner.nextLine();
-
-        if (userName.equalsIgnoreCase("New")) 
+        userExisting = scanner.nextLine();
+        if (userExisting.equalsIgnoreCase("New")) 
         {
             System.out.println("\nWelcome New User!, enter a user name:\n");
             userName = scanner.nextLine();
@@ -29,11 +29,12 @@ public class sudokuJPEVgame implements SudokuComponent
             userLevel=UserManager.findAndDisplayUserInfo(userName);
             
         } 
-        else if (userName.equalsIgnoreCase("Existing")) 
+        else if (userExisting.equalsIgnoreCase("Existing")) 
         {
             System.out.println("\nWelcome back! What is your username?");
             userName = scanner.nextLine();
             userLevel=UserManager.findAndDisplayUserInfo(userName);
+            //UserManager.changeLevel(userName, 2); //for testing the overwriting of level info
         } 
         else 
         {
@@ -47,75 +48,78 @@ public class sudokuJPEVgame implements SudokuComponent
         Level hardLevel = levelMaker.createLevel3();
         boolean solving = true;
 
-        //System.out.println("userlevel"+ userLevel); //for error checking
-
-        switch (userLevel) 
+        //System.out.println("userLevel"+ userLevel); //for error checking
+        if (userName != null)       //allows username to be used in the switch- idk why
         {
-            case 1:
-                while (solving) 
-                {
-                    
-                    solving = game.checkSolved(easyLevel); //will currently return false with B so it stops the loop
-                    if (solving == true)
+            switch (userLevel) 
+            {
+                case 1:
+                    while (solving) 
                     {
-                        System.out.println("Easy Level:");
-                        levelMaker.printLevel(easyLevel);
-                        System.out.println("Is the level solved?: " + !solving); //not solved is opposite of solving
-                        char input[][] = easyLevel.getGrid();
-                        System.out.println("\nEnter your guess in the format 'row column guess' example: '2 3 1': (Enter Exit or Quit to leave game)");
-                        System.out.println("R C G\n-----");
-                        game.playing(input, solving);
+                        
+                        solving = game.checkSolved(easyLevel); //will currently return false with B so it stops the loop
+                        if (solving == true)
+                        {
+                            System.out.println("Easy Level:");
+                            levelMaker.printLevel(easyLevel);
+                            System.out.println("Is the level solved?: " + !solving); //not solved is opposite of solving
+                            char input[][] = easyLevel.getGrid();
+                            System.out.println("\nEnter your guess in the format 'row column guess' example: '2 3 1': (Enter Exit or Quit to leave game)");
+                            System.out.println("R C G\n-----");
+                            game.playing(input, solving);
+                        }
+                        else
+                        {
+                            System.out.println("Congratz you win");
+                            UserManager.changeLevel(userName, 2);
+                        }
                     }
-                    else
-                    {
-                        System.out.println("Congratz you win");
-                        UserManager.changeLevel(userName, 2);
-                    }
-                }
-                break;
-            case 2:
-                while (solving)
-                {
-                    solving = game.checkSolved(mediumLevel);
-                    if (solving == true)
-                    {
-                        System.out.println("Medium LEvel:");
-                        levelMaker.printLevel(mediumLevel);
-                        System.out.println("Is the level solved?: " + !solving); //not solved is opposite of solving
-                        char input[][] = mediumLevel.getGrid();
-                        System.out.println("\nEnter your guess in the format 'row column guess' example: '2 3 1': (Enter Exit or Quit to leave game)");
-                        System.out.println("R C G\n-----");
-                        game.playing(input, solving);
-                    }
-                    else
-                    {
-                        System.out.println("Congratz you win");
-                    }
-                }
                     break;
-                case 3:
-                while (solving)
-                {
-                    solving = game.checkSolved(hardLevel);
-                    if (solving == true)
+                case 2:
+                    while (solving)
                     {
-                        System.out.println("Easy Level:");
-                        levelMaker.printLevel(hardLevel);
-                        System.out.println("Is the level solved?: " + !solving); //not solved is opposite of solving
-                        char input[][] = hardLevel.getGrid();
-                        System.out.println("\nEnter your guess in the format 'row column guess' example: '2 3 1': (Enter Exit or Quit to leave game)");
-                        System.out.println("R C G\n-----");
-                        game.playing(input, solving);
+                        solving = game.checkSolved(mediumLevel);
+                        if (solving == true)
+                        {
+                            System.out.println("Medium LEvel:");
+                            levelMaker.printLevel(mediumLevel);
+                            System.out.println("Is the level solved?: " + !solving); //not solved is opposite of solving
+                            char input[][] = mediumLevel.getGrid();
+                            System.out.println("\nEnter your guess in the format 'row column guess' example: '2 3 1': (Enter Exit or Quit to leave game)");
+                            System.out.println("R C G\n-----");
+                            game.playing(input, solving);
+                        }
+                        else
+                        {
+                            System.out.println("Congratz you win");
+                            UserManager.changeLevel(userName, 3);
+                        }
                     }
-                    else
+                        break;
+                    case 3:
+                    while (solving)
                     {
-                        System.out.println("Congratz you win");
+                        solving = game.checkSolved(hardLevel);
+                        if (solving == true)
+                        {
+                            System.out.println("Easy Level:");
+                            levelMaker.printLevel(hardLevel);
+                            System.out.println("Is the level solved?: " + !solving); //not solved is opposite of solving
+                            char input[][] = hardLevel.getGrid();
+                            System.out.println("\nEnter your guess in the format 'row column guess' example: '2 3 1': (Enter Exit or Quit to leave game)");
+                            System.out.println("R C G\n-----");
+                            game.playing(input, solving);
+                        }
+                        else
+                        {
+                            System.out.println("Congratz you win");
+                        }
                     }
-                }
-                break;
-            default:
-                System.out.println("\nGoodbye!:");
-                break;
+                    break;
+                default:
+                    System.out.println("\nGoodbye!:");
+                    break;
+            }
         }
     }
 

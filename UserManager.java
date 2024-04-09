@@ -20,7 +20,8 @@ public class UserManager
         }
     }
 
-    public static int findAndDisplayUserInfo(String username) {
+    public static int findAndDisplayUserInfo(String username) 
+    {
         int userLevel = -1; // Initialize to -1 by default, isnt accepted as valid number
         boolean found = false;
         try (BufferedReader reader = new BufferedReader(new FileReader("usernames.txt"))) 
@@ -57,51 +58,31 @@ public class UserManager
 
     public static void changeLevel(String userName, int newLevel) 
     {
-        String fileName = "username.txt";
         String line;
-        BufferedReader reader = new BufferedReader(new FileReader(fileName));
         StringBuilder content = new StringBuilder();
-        
-        // Specify the line number to edit (assuming it's 1-based)
-        int lineNumber = 0; // Change this to the line number you want to edit
-
-        while ((line = reader.readLine()) != null) 
+    
+        try (BufferedReader reader = new BufferedReader(new FileReader("usernames.txt"))) 
         {
-            lineNumber++; //increment until found
-            if (line.contains("Username: " + userName)) 
-            {
-                writer.write("Username: " + userName + ", Level: "+newLevel);    
-            }
-            else
-            {
-                lineNumber++;
-            }
-        }
-        
-        try 
-        {
-            // Read the file
-            int currentLineNumber = 1;
-
-            // Read and edit the specified line
             while ((line = reader.readLine()) != null) 
             {
-                if (currentLineNumber == lineNumber) 
+                if (line.contains("Username: " + userName)) //find current user
                 {
-                    line = "Username: " + userName + ", Level: "+newLevel; // Edit the line here
+                    line = "Username: " + userName + ", Level: " + newLevel; //new info that is to be written
                 }
-                content.append(line).append(System.lineSeparator());
-                currentLineNumber++;
+                content.append(line).append(System.lineSeparator()); //combine info into string
             }
-            reader.close();
-
-            // Write the modified content back to the file
-            BufferedWriter writer = new BufferedWriter(new FileWriter(fileName));
-            writer.write(content.toString());
-            writer.close();
-
-            System.out.println("File edited successfully.");
-        } catch (IOException e) {
+        } 
+        catch (IOException e) 
+        {
+            e.printStackTrace();
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("usernames.txt"))) 
+        {
+            writer.write(content.toString()); //write to string
+            //System.out.println("File edited successfully.");
+        } 
+        catch (IOException e) 
+        {
             e.printStackTrace();
         }
     }
