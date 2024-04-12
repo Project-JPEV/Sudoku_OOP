@@ -150,9 +150,9 @@ public class sudokuJPEVgame implements SudokuComponent
         if (userInput.equalsIgnoreCase("Exit") || userInput.equalsIgnoreCase("Quit")) //Loop for game to start
         {
             System.out.println("Goodbye");
-            return solving = false;
+            System.exit(0);
         }
-    
+
         String[] parts = userInput.split(" ");                   //make user input into string and split into parts with spaces
     
         if (parts.length != 3) 
