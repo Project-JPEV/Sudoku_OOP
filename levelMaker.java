@@ -30,7 +30,7 @@ public class levelMaker implements SudokuLevel
     {
         char[][] easyGrid = 
         {
-            {'3', '2', 'X', '1'},
+            {'3', '2', '4', '1'},
             {'X', 'X', '3', '2'},
             {'X', '4', '2', 'X'},
             {'2', 'X', 'X', 'X'}
@@ -52,8 +52,8 @@ public class levelMaker implements SudokuLevel
         {
             {'X', 'X', '4', '1'},
             {'4', 'X', 'X', 'X'},
-            {'X', '4', 'X', '1'},
-            {'X', '3', '2', 'X'}
+            {'X', '4', 'X', '3'},
+            {'X', '3', '1', 'X'}
         };
         char[][] mediumSolution = 
         {
