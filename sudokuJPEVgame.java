@@ -72,6 +72,7 @@ public class sudokuJPEVgame implements SudokuComponent
                         else
                         {
                             System.out.println("Congratz you win");
+                            System.out.println(".--'''''''''--.\n     .'      .---.      '.\n    /    .-----------.    \\\n   /        .-----.        \\\n   |       .-.   .-.       |\n   |      /   \\ /   \\      |\n    \\    | .-. | .-. |    /\n     '-._| | | | | | |_.-'\n         | '-' | '-' |\n          \\___/ \\___/ \n       _.-'  /   \\  `-._\n     .' _.--|     |--._ '.\n     ' _...-|     |-..._ '\n            |     |\n            '.___.'");
                             UserManager.changeLevel(userName, 2);
                         }
                     }
@@ -82,7 +83,7 @@ public class sudokuJPEVgame implements SudokuComponent
                         solving = game.checkSolved(mediumLevel);
                         if (solving == true)
                         {
-                            System.out.println("Medium LEvel:");
+                            System.out.println("Medium Level:");
                             levelMaker.printLevel(mediumLevel);
                             System.out.println("Is the level solved?: " + !solving); //not solved is opposite of solving
                             char input[][] = mediumLevel.getGrid();
@@ -93,6 +94,7 @@ public class sudokuJPEVgame implements SudokuComponent
                         else
                         {
                             System.out.println("Congratz you win");
+                            System.out.println(".-----.\n .' -   - '.\n/  .-. .-.  \\\n|  | | | |  |\n \\ \\o/ \\o/ / \n  _/    ^    \\_\n | \\  '---'  / |\n / /`--. .--`\\ \\ \n/ /'---` `---'\\ \\ \n'.__.       .__.'\n    `|     |`\n     |     |\n     |     \\\n     \\     '--.\n      '.        `\\\n        `'---.   |\n              ) /\n              \\/");
                             UserManager.changeLevel(userName, 3);
                         }
                     }

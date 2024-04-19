@@ -1,4 +1,5 @@
 Username: eric, Level: 2
 Username: Juliet, Level: 1
 Username: Jay, Level: 2
-Username: Victor, Level: 1
+Username: Victor, Level: 2
+Username: pam, Level: 2
