@@ -15,6 +15,8 @@ This project was the culmination of a semester of object-oriented programming as
 - Assisted with code reviews, integration, debugging, and project coordination.
 
 ### Victor Pena
+- Developed Sudoku level generation functionality.
+- Implemented core game logic and gameplay mechanics.
 - Contributed to game development and implementation.
 
 ### Pablo Luis Solano
