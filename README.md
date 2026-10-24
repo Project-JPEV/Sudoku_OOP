@@ -22,6 +22,9 @@ This project was the culmination of a semester of object-oriented programming as
 ### Pablo Luis Solano
 - Contributed to game development and implementation.
 
+### Juliet Cuin
+- Contributed to game development and implementation.
+
 ## Features
 
 - Playable Sudoku board
